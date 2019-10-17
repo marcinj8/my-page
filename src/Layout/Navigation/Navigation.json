@@ -1,0 +1,18 @@
+[
+    {
+        "id": "start",
+        "active": true
+    },
+    {
+        "id": "oferta",
+        "active": false
+    },
+    {
+        "id": "o mnie",
+        "active": false
+    },
+    {
+        "id": "kontakt",
+        "active": false
+    }
+]

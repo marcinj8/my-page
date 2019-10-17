@@ -1,0 +1,61 @@
+.startPage__container {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    overflow: hidden;
+}
+
+.startPage__containerBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 3400px;
+    height: 100%;
+    z-index: -1;
+    background: gray;
+    /* background-size: 100% 100%; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-image: url('../../Assets/mainBg3.jpg');
+}
+
+.animation {
+    animation: moveBackground 900s infinite linear;
+}
+
+/* @keyframes zoomBackground {
+    0% {
+        background-size: 100%;
+        background-position: center;
+    }
+
+    97% {
+        background-size: 190%;
+        background-position: center;
+    }
+    100% {
+        background-size: 100%;
+        background-position: center;
+    }
+} */
+@media(min-height: 630px) {
+    .startPage__containerBg {
+        min-width: 8500px;
+    }
+}
+
+@keyframes moveBackground {
+    0% {
+        transform: translateY(0);
+        transform: translateX(-35%);
+    }
+
+    100% {
+        transform: translateY(+10%);
+        transform: translateX(0%)
+    }
+}
