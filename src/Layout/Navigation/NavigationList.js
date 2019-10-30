@@ -8,12 +8,13 @@ import './NavigationList.css';
 
 const navigationList = props => {
 
-    const navigationList = navigationData.map( item => {
+    const navigationList = navigationData.map(item => {
         return (
-            <NavitaionItem 
+            <NavitaionItem
                 key={item.id}
                 name={item.id}
-                isActive={item.active}/>
+                clicked={props.setNavbarItemActive}
+                isActive={item.active} />
         )
     });
 

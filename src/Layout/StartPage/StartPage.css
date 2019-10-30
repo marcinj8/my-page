@@ -14,9 +14,8 @@
     left: 0;
     min-width: 3400px;
     height: 100%;
-    z-index: -1;
+    z-index: -10;
     background: gray;
-    /* background-size: 100% 100%; */
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -24,7 +23,14 @@
 }
 
 .animation {
-    animation: moveBackground 900s infinite linear;
+    animation: moveBackground 850s infinite linear;
+}
+
+.startPage__animatedCloud {
+    position: absolute;
+    width: 350px;
+    top: 350px;
+    z-index: -9;
 }
 
 /* @keyframes zoomBackground {

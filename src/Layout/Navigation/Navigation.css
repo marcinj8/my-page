@@ -2,7 +2,7 @@
     padding: 50px 30px;
     position: fixed;
     width: 100%;
-    background: rgba(0, 0, 255, 0.137);
+    background: rgba(0, 0, 255, 0);
     z-index: 1000;
     border-bottom: 1px solid transparent;
     box-shadow: 0 0 0;
@@ -11,7 +11,7 @@
 
 .navigation__container--setSticky {
     padding: 20px 10px;
-    background: rgb(0, 0, 255);
+    background: rgb(255, 255, 255);
     border-bottom: 1px solid black;
     box-shadow: 10px 0 15px;
 
@@ -19,7 +19,7 @@
 
 .navigation__container--relaseSticky {
     padding: 50px 30px;
-    background: rgba(0, 0, 255, 0.137);
+    background: rgba(0, 0, 255, 0);
     border-bottom: 1px solid transparent;
     box-shadow: 0 0 0;
 

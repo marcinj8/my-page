@@ -7,6 +7,7 @@
 @media(min-width: 500px) {
     .offer__container {
         margin: 0 auto;
+        padding: 100px 10px 10px 10px;
         background: rgba(131, 133, 131, 0.65);
         width: 70%;
         height: 100vh;
