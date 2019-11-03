@@ -15,20 +15,12 @@ class ContactForm extends Component {
         emailValidation: {},
         placeholders: {},
         isSent: false,
-        showForm: false,
+        // showForm: false,
         disableSendButton: true
     };
 
     UNSAFE_componentWillMount() {
         this.setStateOnMount();
-        setTimeout( () => {
-            this.setState({
-                showForm: true
-            })
-        }, 2000
-
-        )
-        
     }
 
     setStateOnMount = () => {
@@ -120,7 +112,7 @@ class ContactForm extends Component {
                 <form className="contactForm__form">
                     <FormElements
                         formConfig={formConfig}
-                        showForm={this.state.showForm}
+                        showForm={this.props.showAnimation}
                         placeholders={this.state.placeholders}
                         onChangeElement={this.onInputChange}
                         values={this.state.emailData}

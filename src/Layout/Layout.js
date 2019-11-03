@@ -15,7 +15,12 @@ class Layout extends Component {
         mounted: false,
         navigation: [],
         scrollPosition: 0,
-        navigationSticky: false
+        pageLoadedData: 0,
+        isDateSet: false,
+        navigationSticky: false,
+        offerAnimation: false,
+        aboutMeAnimation: false,
+        contactFormAnimation: false
     }
 
     componentDidMount() {
@@ -36,24 +41,12 @@ class Layout extends Component {
         })
     }
 
-    setNavbarItemActive = id => {
-        const updatedNavigatonData = [...this.state.navigation];
-        updatedNavigatonData.map(item => item.active = false);
-        const indexOfActiveOverlap = updatedNavigatonData.findIndex(item => item.id === id);
-        updatedNavigatonData[indexOfActiveOverlap].active = true;
+    setStartDate = () => {
+        const dateObj = new Date()
+        const currentDate = dateObj.getTime();
 
         this.setState({
-            navigation: updatedNavigatonData
-        })
-    }
-
-    handleScroll = () => {
-        const currentPosition = window.pageYOffset;
-        // const previousPosition = this.state.scrollPosition;
-        const setNavbarSticky = currentPosition > 120;
-        this.setState({
-            scrollPosition: currentPosition,
-            navigationSticky: setNavbarSticky
+            pageLoadedData: currentDate
         })
     }
 
@@ -61,9 +54,53 @@ class Layout extends Component {
         this.setState({ mounted: true })
     };
 
+    setNavbarItemActive = id => {
+        const updatedNavigatonData = [...this.state.navigation];
+        const indexOfActiveOverlap = updatedNavigatonData.findIndex(item => item.id === id);
+        updatedNavigatonData.map(item => item.active = false);
+        updatedNavigatonData[indexOfActiveOverlap].active = true;
+
+        this.setState({
+            navigation: updatedNavigatonData
+        })
+    }
+
+    runAnimation = (position) => {
+        const offer = document.getElementsByClassName('offer__container')[0].offsetTop;
+        const aboutMe = document.getElementsByClassName('aboutMe__container')[0].offsetTop;
+        const contactFrom = document.getElementsByClassName('contactForm__container')[0].offsetTop;
+
+        switch (true) {
+            case (contactFrom < position):
+                this.setState({ contactFormAnimation: true });
+                break;
+            case (aboutMe < position):
+                this.setState({ aboutMeAnimation: true });
+                break;
+            case (offer < position):
+                this.setState({ offerAnimation: true });
+                break;
+            default: return null
+        }
+    }
+
+    handleScroll = () => {
+        const currentPosition = window.pageYOffset;
+        const windowHeight = window.innerHeight;
+        const scrollPositionForAnimation = currentPosition + Math.round(windowHeight * .8);
+        // const previousPosition = this.state.scrollPosition;
+        const setNavbarSticky = currentPosition > 120;
+        this.setState({
+            scrollPosition: currentPosition,
+            scrollPositionForAnimation: scrollPositionForAnimation,
+            navigationSticky: setNavbarSticky
+        })
+        this.runAnimation(scrollPositionForAnimation);
+    }
+
     render() {
         return (
-            
+
             <div className='mainContainer'>
                 <Navigation
                     navigationData={this.state.navigation}
@@ -71,9 +108,12 @@ class Layout extends Component {
                     setNavbarItemActive={this.setNavbarItemActive} />
                 <StartPage
                     mounted={this.state.mounted} />
-                <Offer />
-                <AboutMe />
-                <ContactForm />
+                <Offer
+                    showAnimation={this.state.offerAnimation} />
+                <AboutMe
+                    showAnimation={this.state.aboutMeAnimation} />
+                <ContactForm
+                    showAnimation={this.state.contactFormAnimation} />
             </div>
         )
     }

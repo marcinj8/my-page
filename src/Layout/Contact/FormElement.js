@@ -3,7 +3,6 @@ import React from 'react';
 import './FormElement.css';
 
 const formElement = props => {
-    console.log(props.animationDelay)
     const message = props.validation.showMessage
         ? <div className='form__validatoinMessage'>{props.validation.message}</div>
         : null;
@@ -24,7 +23,7 @@ const formElement = props => {
     }
 
     if (props.showForm) {
-        console.log(animationStyle)
+        // console.log(animationStyle)
         animationStyle.transform = 'translateX(0px)';
         animationStyle.opacity = 1;
 
