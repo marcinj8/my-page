@@ -22,8 +22,67 @@
     background-image: url(../../Assets/mainBg3.jpg), url(../../Assets/mainBg3.jpg);
 }
 
+.startPage__animatedCloud {
+    position: absolute;
+    width: 350px;
+    top: 350px;
+    z-index: -9;
+}
+
+.startPage__grassBg {
+    position: absolute;
+    width: 100%;
+    height: 100Vh;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -8;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-image: url(../../Assets/grassBg.png);
+}
+
+.startPage__button {
+    position: absolute;
+    bottom: 15%;
+    left: calc(50% - 125px);
+    color: white;
+    text-shadow: 0 0 3px black;
+    font-size: 1.2rem;
+    width: 250px;
+    background: transparent;
+    border: 2px white solid;
+    border-radius: 5px;
+    outline: none;
+    padding: 10px;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(-400%);
+    transition: all .15s ;
+}
+
+.startPage__button:hover {
+    background: rgba(255, 255, 255, 0.191);
+}
+.startPage__button:active {
+    transform: scale(.9);
+    background: rgba(255, 255, 255, 0.513);
+}
+
+.startPage__button--animation {
+    animation: showStartPageButton 3s forwards;
+    animation-timing-function: cubic-bezier(0.42, 0, 0, 1.07)
+}
+
 .animation {
     animation: moveBackground 850s infinite linear;
+}
+
+.startPage__dynamicWords {
+    font-weight: bold;
+    font-size: 1.5em;
+    text-shadow: 5px 5px 10xp;
 }
 
 .startPage__header {
@@ -31,20 +90,19 @@
 }
 
 .slideAndOpacity {
-    animation: slideAndOpacity infinite 5s ;
-    animation-delay: 2500ms;
+    animation: slideAndOpacity infinite 5s;
 }
 
-.startPage__dynamicWords {
-    font-weight: bold;
-    font-size: 1.5em;
+.slideVerticalAndOpacity {
+    animation: slideVerticalAndOpacity infinite 5s;
 }
 
-.startPage__animatedCloud {
-    position: absolute;
-    width: 350px;
-    top: 350px;
-    z-index: -9;
+.slideHorizontalAndOpacity {
+    animation: slideHorizontalAndOpacity infinite 5s;
+}
+
+.various {
+    animation: various infinite 5s;
 }
 
 @media(min-height: 630px) {
@@ -67,23 +125,156 @@
 
 @keyframes slideAndOpacity {
     0% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    5%{
-        opacity: 1;
-        transform: scale(1.1);
-    }
-    50%{
         opacity: 0;
         transform: scale(0);
     }
-    /* 95%{
+
+    5% {
         opacity: 1;
         transform: scale(1.1);
-    } */
-    100% {
+    }
+
+    50% {
         opacity: 1;
         transform: scale(1);
+    }
+
+    55% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+@keyframes slideVerticalAndOpacity {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    5% {
+        opacity: 1;
+        transform: translateY(+10%);
+    }
+
+    10% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+
+    90% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    95% {
+        opacity: 1;
+        transform: translateY(-5%);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(+100%);
+    }
+}
+
+@keyframes slideHorizontalAndOpacity {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    5% {
+        opacity: 1;
+        transform: translateX(+10%);
+    }
+
+    10% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    90% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    95% {
+        opacity: 1;
+        transform: translateX(-10%);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(+100%);
+    }
+}
+
+@keyframes various {
+    0% {
+        opacity: 0;
+        transform: scale(100);
+    }
+
+    10% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    55% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+}
+
+@keyframes showStartPageButton {
+    0% {
+        transform: translateY(+400%);
+        opacity: 0;
+        z-index: -1000;
+    }
+
+    10% {
+        z-index: 1;
+    }
+
+    50% {
+        transform: translateY(0);
+        opacity: 1;
+        z-index: 1;
+    }
+
+    85% {
+        transform: scale(1)
+    }
+
+    90% {
+        transform: scale(1.1);
+    }
+
+    95% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1);
+        transform: translateY(0);
+        opacity: 1;
+        z-index: 1;
     }
 }

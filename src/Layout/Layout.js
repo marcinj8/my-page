@@ -89,7 +89,7 @@ class Layout extends Component {
         const windowHeight = window.innerHeight;
         const scrollPositionForAnimation = currentPosition + Math.round(windowHeight * .8);
         // const previousPosition = this.state.scrollPosition;
-        const setNavbarSticky = currentPosition > 120;
+        const setNavbarSticky = currentPosition > 20;
         this.setState({
             scrollPosition: currentPosition,
             scrollPositionForAnimation: scrollPositionForAnimation,
@@ -108,10 +108,10 @@ class Layout extends Component {
                     setNavbarItemActive={this.setNavbarItemActive} />
                 <StartPage
                     mounted={this.state.mounted} />
-                <Offer
-                    showAnimation={this.state.offerAnimation} />
                 <AboutMe
                     showAnimation={this.state.aboutMeAnimation} />
+                <Offer
+                    showAnimation={this.state.offerAnimation} />
                 <ContactForm
                     showAnimation={this.state.contactFormAnimation} />
             </div>
