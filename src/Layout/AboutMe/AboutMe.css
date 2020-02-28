@@ -1,6 +1,6 @@
 .aboutMe__container {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     padding-top: 100px;
     box-sizing: border-box;
     overflow: hidden;
@@ -10,12 +10,105 @@
     transition: all .3s ease-in-out;
 }
 
-.aboutMe__button{
-    position: absolute;
-    bottom: 10%;
-    left: calc(50% - 75px);
+.aboutMe__flexBox {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.aboutMe__info {
+    margin: 15px;
+    padding: 15px;
+    width: 90%;
+    min-width: 300px;
+    background: rgba(180, 180, 180, 0.496);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all .6s ease-in-out;
+}
+
+.aboutMe__info--show {
+    transform: translate(0, 0);
+    opacity: 1;
+}
+
+.aboutMe__skills {
+    margin: 15px;
+    padding: 15px;
+    width: 90%;
+    min-width: 300px;
+    background: rgb(171, 171, 255);
+    transform: translate(+50%, -50%);
+    opacity: 0;
+    transition: all .6s ease-in-out;
+}
+
+.aboutMe__skills--show {
+    transform: translate(0, 0);
+    opacity: 1;
+}
+
+.aboutMe__button--cv {
+    position: relative;
     width: 150px;
     padding: 10px;
     outline: none;
+    border-radius: 5px;
+    border: 1px transparent solid;
+    background: transparent;
+    z-index: -10;
+    opacity: 0;
+    transform: scale(0);
+    transition: all .6s linear;
+}
 
+.aboutMe__button--show {
+   animation: showCVButton 1.5s forwards;
+}
+
+@keyframes showCVButton {
+    0% {
+        border: 1px transparent solid;
+        background: transparent;
+        z-index: -10;
+        opacity: 0;
+        transform: scale(0);
+    }
+    1% {
+        z-index: 1;
+    }
+    40% {
+        transform: scale(1);
+        box-shadow: 0 0 0;
+
+    }
+    50% {
+        box-shadow: 5px 5px 20px;
+        transform: scale(1.1)
+    }
+    58% {
+        border: 1px transparent solid;
+        box-shadow: 5px 5px 10px;
+        transform: scale(1);
+    }
+    
+    100% {
+        border: 1px black solid;
+        background: white;
+        z-index: 1;
+        opacity: 1;
+        box-shadow: 5px 5px 10px;
+        transform: scale(1);
+    }
+}
+
+@media(min-width: 500px) {
+    .aboutMe__info {
+        width: 45%;
+    }
+
+    .aboutMe__skills {
+        width: 45%;
+    }
 }

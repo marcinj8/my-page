@@ -1,0 +1,32 @@
+.sidebar__container {
+    display: block;
+    padding: 50px 30px;
+    position: fixed;
+    width: 250px;
+    height: 100vh;
+    background: rgba(0, 0, 255, 0.83);
+    z-index: 1000;
+    border-bottom: 1px solid transparent;
+    box-shadow: 0 0 0;
+    transition: all .4s ease-in-out;
+}
+
+.sidebar__container--open {
+    background: rgb(255, 255, 255);
+    border-bottom: 1px solid black;
+    box-shadow: 10px 0 15px;
+
+}
+
+.sidebar__container--close {
+    background: rgba(0, 0, 255, 0);
+    border-bottom: 1px solid transparent;
+    box-shadow: 0 0 0;
+
+}
+
+@media(min-width:500px) {
+    .sidebar__container {
+        display: none
+    }
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Navigation from './Navigation/Navigation';
+import Sidebar from './Navigation/Sidebar';
 import StartPage from './StartPage/StartPage';
 import Offer from './Offer/Offer';
 import AboutMe from './AboutMe/AboutMe';
@@ -18,9 +19,14 @@ class Layout extends Component {
         pageLoadedData: 0,
         isDateSet: false,
         navigationSticky: false,
-        offerAnimation: false,
-        aboutMeAnimation: false,
-        contactFormAnimation: false
+        animation: {
+            offerAnimation: false,
+            aboutMeAnimation: false,
+            aboutMeSkillsAnimation: false,
+            aboutMeCVButtonAnimation: false,
+            contactFormAnimation: false,
+        },
+        showSidebar: false,
     }
 
     componentDidMount() {
@@ -65,20 +71,39 @@ class Layout extends Component {
         })
     }
 
+    sidebarToggler = () => {
+        this.setState({
+            showSidebar: !this.state.showSidebar
+        })
+    }
+
+    setAnimationToTrue = property => {
+        const animation = { ...this.state.animation };
+        animation[property] = true;
+
+        this.setState({
+            animation: animation
+        })
+    }
+
     runAnimation = (position) => {
         const offer = document.getElementsByClassName('offer__container')[0].offsetTop;
-        const aboutMe = document.getElementsByClassName('aboutMe__container')[0].offsetTop;
-        const contactFrom = document.getElementsByClassName('contactForm__container')[0].offsetTop;
-
+        const aboutMe = document.getElementsByClassName('aboutMe__info')[0].offsetTop + 200;
+        const aboutMeSkills = document.getElementsByClassName('aboutMe__skills')[0].offsetTop + 300;
+        const aboutMeCVButton = document.getElementsByClassName('aboutMe__button--cv')[0].offsetTop + 300;
+        const contactFrom = document.getElementsByClassName('contactForm__container')[0].offsetTop - 200;
+        
         switch (true) {
             case (contactFrom < position):
-                this.setState({ contactFormAnimation: true });
-                break;
+                this.setAnimationToTrue('contactFormAnimation')
+            case (aboutMeCVButton < position):
+                this.setAnimationToTrue('aboutMeCVButtonAnimation')
+            case (aboutMeSkills < position):
+                this.setAnimationToTrue('aboutMeSkillsAnimation')
             case (aboutMe < position):
-                this.setState({ aboutMeAnimation: true });
-                break;
+                this.setAnimationToTrue('aboutMeAnimation')
             case (offer < position):
-                this.setState({ offerAnimation: true });
+                this.setAnimationToTrue('offerAnimation')
                 break;
             default: return null
         }
@@ -87,7 +112,7 @@ class Layout extends Component {
     handleScroll = () => {
         const currentPosition = window.pageYOffset;
         const windowHeight = window.innerHeight;
-        const scrollPositionForAnimation = currentPosition + Math.round(windowHeight * .8);
+        const scrollPositionForAnimation = currentPosition + Math.round(windowHeight * .2);
         // const previousPosition = this.state.scrollPosition;
         const setNavbarSticky = currentPosition > 20;
         this.setState({
@@ -100,20 +125,34 @@ class Layout extends Component {
 
     render() {
         return (
-
             <div className='mainContainer'>
+                <button
+                    onClick={this.sidebarToggler}
+                    className='menu__toggler'>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </button>
                 <Navigation
+                    navigationData={this.state.navigation}
+                    stickyNavigation={this.state.navigationSticky}
+                    setNavbarItemActive={this.setNavbarItemActive} />
+                <Sidebar
+                    hideSidebar={this.sidebarToggler}
+                    showSidebar={this.state.showSidebar}
                     navigationData={this.state.navigation}
                     stickyNavigation={this.state.navigationSticky}
                     setNavbarItemActive={this.setNavbarItemActive} />
                 <StartPage
                     mounted={this.state.mounted} />
                 <AboutMe
-                    showAnimation={this.state.aboutMeAnimation} />
+                    showAnimation={this.state.animation.aboutMeAnimation}
+                    showSkillsAnimation={this.state.animation.aboutMeSkillsAnimation}
+                    CVButtonAnimation={this.state.animation.aboutMeCVButtonAnimation} />
                 <Offer
-                    showAnimation={this.state.offerAnimation} />
+                    showAnimation={this.state.animation.offerAnimation} />
                 <ContactForm
-                    showAnimation={this.state.contactFormAnimation} />
+                    showAnimation={this.state.animation.contactFormAnimation} />
             </div>
         )
     }

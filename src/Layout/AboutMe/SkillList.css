@@ -1,0 +1,54 @@
+.skillList__container {
+    margin: 5px;
+}
+
+.skillList__item {
+    list-style: none;
+    margin: 5px;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: all 1s;
+    /* animation: showSkillListItem 1s forwards; */
+}
+
+.skillList__item:last-child {
+    margin: 0 0 15px 0;
+}
+
+.skillList__checkedContainer{
+    width: 20px;
+    position: relative;
+}
+.skillList__checked {
+    display: inline-block;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(../../Assets/check.png);
+    height: 20px;
+    width: 0;
+    transition: all 1s;
+    /* animation: checkIt 1s forwards linear; */
+}
+
+@keyframes showSkillListItem {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes checkIt {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 20px;
+    }
+}

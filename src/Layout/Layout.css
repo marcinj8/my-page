@@ -1,8 +1,35 @@
 .mainContainer {
     position: relative;
-    margin:0;
+    margin: 0;
     padding: 0;
     width: 100%;
     height: 100vh;
 }
 
+.menu__toggler {
+    background: transparent;
+    display: block;
+    position: fixed;
+    width: 60px;
+    top: 50px;
+    left: 30px;
+    padding: 5px;
+    z-index: 2;
+    border: 1px solid transparent
+}
+
+.menu__toggler div {
+    background: white;
+    width: 90%;
+    height: 6px;
+    margin: 6px;
+    border-radius: 5px;
+    border: 1px solid rgb(99, 99, 245)
+
+}
+
+@media(min-width:500px) {
+    .menu__toggler {
+        display: none;
+    }
+}

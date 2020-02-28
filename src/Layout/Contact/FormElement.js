@@ -17,13 +17,12 @@ const formElement = props => {
     ];
     let animationStyle = {
         transitionDelay: props.animationDelay + 's',
-        transition: 'all .5s forwards',
+        // transition: 'all .5s forwards',
         transform: 'translateX(' + props.animationSide + ')',
         opacity: 0
     }
 
     if (props.showForm) {
-        // console.log(animationStyle)
         animationStyle.transform = 'translateX(0px)';
         animationStyle.opacity = 1;
 
